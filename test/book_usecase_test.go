@@ -1,6 +1,7 @@
 package test
 
 import (
+	"fmt"
 	"go-book-library-graphql/internal/app/book"
 	"testing"
 
@@ -24,4 +25,11 @@ func TestCreateBook(t *testing.T) {
 	assert.Equal(t, req.Language, result.Language)
 	assert.Equal(t, *req.Synopsis, result.Synopsis)
 	assert.Equal(t, req.TotalPage, result.TotalPage)
+}
+
+func TestShowALlBook(t *testing.T) {
+	result, err := book.ShowAllBook()
+	assert.Nil(t, err)
+	fmt.Println(*result)
+
 }

@@ -25,3 +25,12 @@ func NewBook(req *NewBookRequest) (*NewBookResponse, error) {
 		CreatedAt: time.Now(),
 	}, nil
 }
+
+func ShowAllBook() (*[]Book, error) {
+	result, err := FindAll()
+	if err != nil {
+		return nil, err
+	}
+
+	return result, nil
+}

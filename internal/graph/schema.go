@@ -1,24 +1,17 @@
 package graph
 
 import (
-	"go-book-library-graphql/internal/graph/resolver"
+	"go-book-library-graphql/internal/app/book"
 
 	"github.com/graphql-go/graphql"
 )
-
-// type SchemaConfig struct {
-// 	BookResolver *resolver.BookResolver
-// }
 
 func Schema() *graphql.Schema {
 	// Root Query
 	rootQuery := graphql.NewObject(graphql.ObjectConfig{
 		Name: "Query",
 		Fields: graphql.Fields{
-			"book": &graphql.Field{
-				Type:    graphql.String,
-				Resolve: resolver.NewBookHandler,
-			},
+			"book": book.ShowAllBookQuery,
 		},
 	})
 
@@ -26,16 +19,7 @@ func Schema() *graphql.Schema {
 	rootMutation := graphql.NewObject(graphql.ObjectConfig{
 		Name: "Mutation",
 		Fields: graphql.Fields{
-			"create": &graphql.Field{
-				Type: graphql.String,
-				Args: graphql.FieldConfigArgument{
-					"name": &graphql.ArgumentConfig{Type: graphql.NewNonNull(graphql.String)},
-				},
-				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-					res := p.Args["name"]
-					return res, nil
-				},
-			},
+			"createBook": book.NewBookMutation,
 		},
 	})
 
