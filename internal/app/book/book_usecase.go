@@ -7,20 +7,20 @@ import (
 	"github.com/google/uuid"
 )
 
-type BookUsecase struct {
-	BookRepository *BookRepository
-}
+// type BookUsecase struct {
+// 	BookRepository *BookRepository
+// }
 
-func NewBookUsecase(bookRepo *BookRepository) *BookUsecase {
-	return &BookUsecase{
-		BookRepository: bookRepo,
-	}
-}
+// func NewBookUsecase(bookRepo *BookRepository) *BookUsecase {
+// 	return &BookUsecase{
+// 		BookRepository: bookRepo,
+// 	}
+// }
 
-func (b *BookUsecase) NewBook(req *NewBookRequest) (*NewBookResponse, error) {
+func NewBook(req *NewBookRequest) (*NewBookResponse, error) {
 	id := uuid.New().String()
 	req.Title = strings.TrimSpace(req.Title)
-	err := b.BookRepository.Create(id, req)
+	err := Create(id, req)
 	if err != nil {
 		return nil, err
 	}
