@@ -2,7 +2,6 @@ package test
 
 import (
 	"go-book-library-graphql/internal/app/book"
-	"go-book-library-graphql/internal/config"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -17,7 +16,7 @@ func TestCreateBook(t *testing.T) {
 		Synopsis:  &synopsis,
 		TotalPage: 12,
 	}
-	result, err := book.NewBookUsecase(book.NewBookRepository(config.GetConnection())).NewBook(&req)
+	result, err := book.NewBook(&req)
 
 	assert.Nil(t, err)
 	assert.Equal(t, req.Title, result.Title)
