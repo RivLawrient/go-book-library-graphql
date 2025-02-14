@@ -7,7 +7,7 @@ type Book struct {
 	Title       string
 	Author      string
 	Language    string
-	Sypnosis    string
+	Synopsis    string
 	TotalPage   int
 	CurrentPage int
 	CreatedAt   time.Time
