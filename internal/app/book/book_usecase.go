@@ -7,16 +7,6 @@ import (
 	"github.com/google/uuid"
 )
 
-// type BookUsecase struct {
-// 	BookRepository *BookRepository
-// }
-
-// func NewBookUsecase(bookRepo *BookRepository) *BookUsecase {
-// 	return &BookUsecase{
-// 		BookRepository: bookRepo,
-// 	}
-// }
-
 func NewBook(req *NewBookRequest) (*NewBookResponse, error) {
 	id := uuid.New().String()
 	req.Title = strings.TrimSpace(req.Title)
