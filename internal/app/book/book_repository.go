@@ -3,11 +3,13 @@ package book
 import (
 	"database/sql"
 	"go-book-library-graphql/internal/config"
+	"log"
 )
 
 func Create(id string, req *NewBookRequest) error {
+	log.Println("BookCreateRepo")
 	query := "INSERT INTO book(id, title, author, language, synopsis, total_page) VALUES($1, $2, $3, $4, $5, $6)"
-	_, err := config.GetConnection().Exec(query, id, req.Title, req.Author, req.Language, req.Synopsis, req.TotalPage)
+	_, err := config.GetConnection().Exec(query, &id, &req.Title, &req.Author, &req.Language, &req.Synopsis, &req.TotalPage)
 
 	return err
 }

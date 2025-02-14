@@ -1,6 +1,7 @@
 package book
 
 import (
+	"log"
 	"strings"
 	"time"
 
@@ -8,6 +9,7 @@ import (
 )
 
 func NewBook(req *NewBookRequest) (*NewBookResponse, error) {
+	log.Println("NewBookUsecase")
 	id := uuid.New().String()
 	req.Title = strings.TrimSpace(req.Title)
 	err := Create(id, req)

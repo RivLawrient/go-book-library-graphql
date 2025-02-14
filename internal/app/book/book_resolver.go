@@ -10,11 +10,14 @@ var NewBookMutation = &graphql.Field{
 		"title":      &graphql.ArgumentConfig{Type: graphql.NewNonNull(graphql.String)},
 		"author":     &graphql.ArgumentConfig{Type: graphql.NewNonNull(graphql.String)},
 		"language":   &graphql.ArgumentConfig{Type: graphql.NewNonNull(graphql.String)},
-		"synopsis":   &graphql.ArgumentConfig{Type: graphql.NewNonNull(graphql.String)},
+		"synopsis":   &graphql.ArgumentConfig{Type: graphql.String},
 		"total_page": &graphql.ArgumentConfig{Type: graphql.NewNonNull(graphql.Int)},
 	},
 	Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-		synopsis := p.Args["synopsis"].(string)
+		synopsis, found := p.Args["synopsis"].(string)
+		if !found {
+			synopsis = ""
+		}
 		req := &NewBookRequest{
 			Title:     p.Args["title"].(string),
 			Author:    p.Args["author"].(string),
