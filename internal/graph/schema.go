@@ -6,18 +6,18 @@ import (
 	"github.com/graphql-go/graphql"
 )
 
-type SchemaConfig struct {
-	BookResolver *resolver.BookResolver
-}
+// type SchemaConfig struct {
+// 	BookResolver *resolver.BookResolver
+// }
 
-func (s *SchemaConfig) Route() *graphql.Schema {
+func Schema() *graphql.Schema {
 	// Root Query
 	rootQuery := graphql.NewObject(graphql.ObjectConfig{
 		Name: "Query",
 		Fields: graphql.Fields{
 			"book": &graphql.Field{
 				Type:    graphql.String,
-				Resolve: s.BookResolver.NewBookHandler,
+				Resolve: resolver.NewBookHandler,
 			},
 		},
 	})
