@@ -1,6 +1,7 @@
 package test
 
 import (
+	"encoding/json"
 	"fmt"
 	"go-book-library-graphql/internal/app/book"
 	"testing"
@@ -30,6 +31,29 @@ func TestCreateBook(t *testing.T) {
 func TestShowALlBook(t *testing.T) {
 	result, err := book.ShowAllBook()
 	assert.Nil(t, err)
-	fmt.Println(*result)
 
+	jsonResult, _ := json.MarshalIndent(result, "", "  ")
+	fmt.Println(string(jsonResult))
+}
+
+func TestShowByIdBook(t *testing.T) {
+	synopsis := "kosong"
+	req := book.NewBookRequest{
+		Title:     "rumah",
+		Author:    "gatau",
+		Language:  "eng",
+		Synopsis:  &synopsis,
+		TotalPage: 12,
+	}
+	new, err := book.NewBook(&req)
+
+	assert.Nil(t, err)
+
+	result, err := book.ShowById(new.Id)
+	assert.Nil(t, err)
+
+	assert.Equal(t, req.Title, result.Title)
+
+	jsonResult, _ := json.MarshalIndent(result, "", "  ")
+	fmt.Println(string(jsonResult))
 }

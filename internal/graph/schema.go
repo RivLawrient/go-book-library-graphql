@@ -11,7 +11,8 @@ func Schema() *graphql.Schema {
 	rootQuery := graphql.NewObject(graphql.ObjectConfig{
 		Name: "Query",
 		Fields: graphql.Fields{
-			"book": book.ShowAllBookQuery,
+			"book":     book.ShowAllBookQuery,
+			"bookById": book.ShowByIdBookQuery,
 		},
 	})
 

@@ -46,3 +46,19 @@ var ShowAllBookQuery = &graphql.Field{
 		return result, nil
 	},
 }
+
+var ShowByIdBookQuery = &graphql.Field{
+	Type: BookModel,
+	Args: graphql.FieldConfigArgument{
+		"id": &graphql.ArgumentConfig{Type: graphql.NewNonNull(graphql.String)},
+	},
+	Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+		id := p.Args["id"].(string)
+		result, err := ShowById(id)
+		if err != nil {
+			return nil, err
+		}
+
+		return result, nil
+	},
+}

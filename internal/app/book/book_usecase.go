@@ -37,3 +37,13 @@ func ShowAllBook() (*[]Book, error) {
 
 	return result, nil
 }
+
+func ShowById(id string) (*Book, error) {
+	log.Println("ShowByIdUsecase")
+	result, err := FindById(id)
+	if err != nil {
+		return nil, err
+	}
+
+	return result, nil
+}

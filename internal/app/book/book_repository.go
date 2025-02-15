@@ -37,3 +37,20 @@ func FindAll() (*[]Book, error) {
 	}
 	return &datas, nil
 }
+
+func FindById(id string) (*Book, error) {
+	log.Println("FindByIdRepo")
+	query := "SELECT title, author, language, synopsis, total_page, current_page, created_at FROM book WHERE id=$1"
+	result := config.GetConnection().QueryRow(query, id)
+	if result.Err() != nil {
+		return nil, result.Err()
+	}
+
+	data := new(Book)
+	data.Id = id
+	if err := result.Scan(&data.Title, &data.Author, &data.Language, &data.Synopsis, &data.TotalPage, &data.CurrentPage, &data.CreatedAt); err != nil {
+		return nil, err
+	}
+
+	return data, nil
+}

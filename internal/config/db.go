@@ -12,16 +12,6 @@ import (
 )
 
 func GetConnection() *sql.DB {
-	// username := viper.GetString("DB_USERNAME")
-	// password := viper.GetString("DB_PASSWORD")
-	// host := viper.GetString("DB_HOST")
-	// port := viper.GetInt("DB_PORT")
-	// database := viper.GetString("DB_NAME")
-	// maxIdleConnection := viper.GetInt("DB_MAX_IDLE_CONSS")
-	// maxOpenConns := viper.GetInt("DB_MAX_OPEN_CONNS")
-	// connMaxIdleTime := viper.GetInt("DB_CONN_MAX_IDLE") // in minute
-	// connMaxLifetime := viper.GetInt("DB_CONN_MAX_LIFE") // in minute
-
 	username := os.Getenv("DB_USERNAME")
 	password := os.Getenv("DB_PASSWORD")
 	host := os.Getenv("DB_HOST")
