@@ -19,7 +19,7 @@ func Schema() *graphql.Schema {
 	rootMutation := graphql.NewObject(graphql.ObjectConfig{
 		Name: "Mutation",
 		Fields: graphql.Fields{
-			"createBook": book.NewBookMutation,
+			"newBook": book.NewBookMutation,
 		},
 	})
 
