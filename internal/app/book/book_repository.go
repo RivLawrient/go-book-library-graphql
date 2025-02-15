@@ -15,6 +15,7 @@ func Create(id string, req *NewBookRequest) error {
 }
 
 func FindAll() (*[]Book, error) {
+	log.Println("FindAllRepo")
 	query := "SELECT id, title, author, language, synopsis, total_page, current_page, created_at FROM book"
 	result, err := config.GetConnection().Query(query)
 	if err != nil {

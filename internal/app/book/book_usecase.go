@@ -29,6 +29,7 @@ func NewBook(req *NewBookRequest) (*NewBookResponse, error) {
 }
 
 func ShowAllBook() (*[]Book, error) {
+	log.Println("ShowAllBookUsecase")
 	result, err := FindAll()
 	if err != nil {
 		return nil, err
