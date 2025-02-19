@@ -54,3 +54,16 @@ func FindById(id string) (*Book, error) {
 
 	return data, nil
 }
+
+func RemoveById(id string) error {
+	query := "DELETE FROM book WHERE id=$1;"
+	result, err := config.GetConnection().Exec(query, id)
+	if err != nil {
+		return err
+	}
+
+	if n, _ := result.RowsAffected(); n == 0 {
+		return sql.ErrNoRows
+	}
+	return err
+}

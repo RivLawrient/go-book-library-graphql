@@ -47,3 +47,9 @@ func ShowById(id string) (*Book, error) {
 
 	return result, nil
 }
+
+func RemoveBookById(id string) error {
+	err := RemoveById(id)
+
+	return err
+}

@@ -62,3 +62,19 @@ var ShowByIdBookQuery = &graphql.Field{
 		return result, nil
 	},
 }
+
+var RemoveByIdBookMutation = &graphql.Field{
+	Type: graphql.String,
+	Args: graphql.FieldConfigArgument{
+		"id": &graphql.ArgumentConfig{Type: graphql.NewNonNull(graphql.String)},
+	},
+	Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+		id := p.Args["id"].(string)
+		err := RemoveBookById(id)
+		if err != nil {
+			return nil, err
+		}
+
+		return "Success remove " + id, nil
+	},
+}
